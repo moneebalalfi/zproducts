@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Alert, Flex } from "@chakra-ui/react";
+import axios from "axios";
+import React from "react";
+import useSWR from "swr";
+import Slider from "./components/Slider";
+import Spinner from "./components/Spinner";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  const { data, error } = useSWR(
+    "https://demo2817897.mockable.io/photoSetData",
+    (url: string) => axios(url).then((r) => r.data)
   );
-}
+
+  if (error) return <Alert>No Data</Alert>;
+
+  return (
+    <Flex justify="center">
+      {!data?.products ? (
+        <Spinner />
+      ) : (
+        <>
+          {data?.products.map((product: TProduct) => {
+            if (product.isOutOfStock && product.variants.length <= 0)
+              return null;
+
+            let slotProducts = product.alternatives
+              ? [product, ...product.alternatives]
+              : [product];
+
+            console.log(slotProducts);
+
+            return <Slider key={product.id} slot={slotProducts} />;
+          })}
+        </>
+      )}
+    </Flex>
+  );
+};
 
 export default App;
