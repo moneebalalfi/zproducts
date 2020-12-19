@@ -3,10 +3,10 @@ import { IoIosArrowBack } from "react-icons/io";
 import React, { FC } from "react";
 
 interface PrevBtnBtnProps {
-  onClick: () => void;
+  handleClick: () => void;
 }
 
-const PrevBtn: FC<PrevBtnBtnProps> = ({ onClick }) => (
+const PrevBtn: FC<PrevBtnBtnProps> = ({ handleClick }) => (
   <IconButton
     as="button"
     backgroundColor="#fff"
@@ -19,7 +19,7 @@ const PrevBtn: FC<PrevBtnBtnProps> = ({ onClick }) => (
     top="150px"
     left="0"
     aria-label="Prev"
-    onClick={onClick}
+    onClick={handleClick}
     _hover={{ bgColor: "none" }}
     _focus={{ border: "none" }}
     icon={<IoIosArrowBack size={20} fontWeight="bold" />}

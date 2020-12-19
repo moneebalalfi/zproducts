@@ -1,14 +1,13 @@
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, IconButtonProps } from "@chakra-ui/react";
 import { IoIosArrowForward } from "react-icons/io";
 import React, { FC } from "react";
 
 interface NextBtnProps {
-  onClick: () => void;
+  handleClick: () => void;
 }
 
-const NextBtn: FC<NextBtnProps> = ({ onClick }) => (
+const NextBtn: FC<NextBtnProps> = ({ handleClick }) => (
   <IconButton
-    as="button"
     backgroundColor="#fff"
     width="3.4"
     height="6rem"
@@ -18,11 +17,11 @@ const NextBtn: FC<NextBtnProps> = ({ onClick }) => (
     position="absolute"
     top="150px"
     right="0"
-    aria-label="Next"
-    onClick={onClick}
     _hover={{ bgColor: "none" }}
     _focus={{ border: "none" }}
+    aria-label="Next"
     icon={<IoIosArrowForward size={20} />}
+    onClick={handleClick}
   />
 );
 

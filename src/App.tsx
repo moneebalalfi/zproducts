@@ -2,7 +2,7 @@ import { Alert, Flex } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import useSWR from "swr";
-import Slider from "./components/Slider";
+import Product from "./components/Product";
 import Spinner from "./components/Spinner";
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
   if (error) return <Alert>No Data</Alert>;
 
   return (
-    <Flex justify="center">
+    <Flex direction="column">
       {!data?.products ? (
         <Spinner />
       ) : (
@@ -27,9 +27,13 @@ const App = () => {
               ? [product, ...product.alternatives]
               : [product];
 
-            console.log(slotProducts);
-
-            return <Slider key={product.id} slot={slotProducts} />;
+            return (
+              <Flex flex="1">
+                {slotProducts.map((slot) => (
+                  <Product key={slot.id} prod={slot} />
+                ))}
+              </Flex>
+            );
           })}
         </>
       )}

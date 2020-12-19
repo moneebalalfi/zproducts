@@ -12,6 +12,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
     .price {
       color: #e41d1d;
       font-weight: bold;
