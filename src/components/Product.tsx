@@ -8,7 +8,7 @@ interface ProductProps {
 
 const Product: FC<ProductProps> = ({ prod }) => {
   return (
-    <Flex flexDir="column" width="350px">
+    <Flex flexDir="column" width="100%">
       <Image src={prod?.images[0].url} alt={prod.name} objectFit="cover" />
       <ProductDetails product={prod} />
     </Flex>
