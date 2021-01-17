@@ -1,9 +1,8 @@
-import { Alert, Flex } from "@chakra-ui/react";
+import { Alert, Box, Flex } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import useSWR from "swr";
 import EmblaCarousel from "./components/EmblaCaro";
-import Layout from "./components/Layout";
 import Spinner from "./components/Spinner";
 
 const App = () => {
@@ -15,11 +14,11 @@ const App = () => {
   if (error) return <Alert>Sorry, there are no products</Alert>;
 
   return (
-    <Layout>
+    <Box>
       {!data?.products ? (
         <Spinner />
       ) : (
-        <Flex>
+        <Flex flexWrap={{ base: "wrap", md: "nowrap" }}>
           {data?.products.map((product: TProduct) => {
             if (product.isOutOfStock && product.variants.length <= 0)
               return null;
@@ -28,11 +27,11 @@ const App = () => {
               ? [product, ...product.alternatives]
               : [product];
 
-            return <EmblaCarousel slides={slotProducts} />;
+            return <EmblaCarousel key={product.id} products={slotProducts} />;
           })}
         </Flex>
       )}
-    </Layout>
+    </Box>
   );
 };
 

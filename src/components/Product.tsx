@@ -9,7 +9,12 @@ interface ProductProps {
 const Product: FC<ProductProps> = ({ prod }) => {
   return (
     <Flex flexDir="column" width="100%">
-      <Image src={prod?.images[0].url} alt={prod.name} objectFit="cover" />
+      <Image
+        src={prod?.images[0].url}
+        alt={prod.name}
+        objectFit="contain"
+        maxH="415px"
+      />
       <ProductDetails product={prod} />
     </Flex>
   );

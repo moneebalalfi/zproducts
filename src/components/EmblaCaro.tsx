@@ -5,10 +5,10 @@ import { NextBtn, PrevBtn } from "./Buttons";
 import Product from "./Product";
 
 interface EmblaCarouselProps {
-  slides: any[];
+  products: TProduct[];
 }
 
-const EmblaCarousel: FC<EmblaCarouselProps> = ({ slides }) => {
+const EmblaCarousel: FC<EmblaCarouselProps> = ({ products }) => {
   const [viewportRef, embla] = useEmblaCarousel();
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
@@ -30,15 +30,16 @@ const EmblaCarousel: FC<EmblaCarouselProps> = ({ slides }) => {
   return (
     <Box
       position="relative"
-      width="300px"
+      width={{ base: "50%", md: "calc(1/5)" }}
+      mb={{ base: 5, md: 0 }}
       alignItems="center"
       textAlign="center"
     >
       <Box overflow="hidden" w="100%" ref={viewportRef}>
         <Flex>
-          {slides.map((index) => (
-            <Box position="relative" minW="100%" key={index}>
-              <Product prod={index} />
+          {products.map((product) => (
+            <Box position="relative" minW="100%" key={product.id}>
+              <Product prod={product} />
             </Box>
           ))}
         </Flex>
