@@ -1,4 +1,4 @@
-# Big Thanks to **Omar Zeidan** 💻 💞;
+# 💻 💞;
  
 ### [--Demo!](https://zproducts-two.vercel.app/)
 
